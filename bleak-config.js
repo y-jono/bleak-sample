@@ -1,5 +1,5 @@
 // URL to the web application.
-exports.url = "http://todomvc.com/examples/backbone/";
+exports.url = "http://127.0.0.1:8081/";
 // Runs your program in a loop. Each item in the array is a `state`. Each `state` has a "check"
 // function, and a "next" function to transition to the next state in the loop. These run
 // in the global scope of your web app.
@@ -12,22 +12,23 @@ exports.loop = [
  {
  // Return 'true' if the web application is ready for `next` to be run.
  check: function() {
- return !!document.getElementsByClassName('new-todo')[0];
+   return !!document.getElementById('todoFormLabel');
  },
  // Transitions to the next state.
  next: function() {
- // Example: Navigate to the first thread
- document.getElementsByClassName('new-todo')[0].value = 'aaaa';
+   // Example: Navigate to the first thread
+   document.getElementById('todoFormLabel').value = 'aaaa';
+   document.getElementById('todoFormButton').click();
  }
  },
  // Second (and last) state
  {
  check: function() {
- return !!document.getElementsByClassName('new-todo')[0];
+ return !!document.getElementsByClassName('todoElem1')[0]
  },
  // Since this is the last state in the loop, it must transition back to the first state.
  next: function() {
- document.getElementsByClassName('new-todo')[0].value = 'bbbb';
+   //document.getElementsByClassName('todoElem')[0].value = 'bbbb';
  }
  }
 ];
