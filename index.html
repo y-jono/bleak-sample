@@ -2,6 +2,7 @@
   <script>
     const arr = []
     function displayTodoList() {
+      var longstr = new Array(1000000).join('*')
       const el = document.getElementById("todoList")
       el.innerHTML = "" // clear all todo
       arr.forEach((elem, i) => {
@@ -10,7 +11,6 @@
         const delBtn = document.createElement("button")
         delBtn.innerHTML = "delete"
         delBtn.addEventListener("click", () => {
-          var longstr = new Array(1000000).join('*')
           arr.splice(i, 1)
           displayTodoList()
         })
