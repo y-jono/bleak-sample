@@ -1,5 +1,5 @@
 // URL to the web application.
-exports.url = "http://127.0.0.1:8081/";
+exports.url = "http://127.0.0.1:8080/";
 // Runs your program in a loop. Each item in the array is a `state`. Each `state` has a "check"
 // function, and a "next" function to transition to the next state in the loop. These run
 // in the global scope of your web app.
