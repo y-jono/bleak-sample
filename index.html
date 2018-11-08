@@ -1,28 +1,33 @@
 <html>
   <script>
-    const arr = []
-    function displayTodoList() {
-      var longstr = new Array(1000000).join('*')
+    const todolist = {
+      name: 'List1',
+      children: []
+    }
+
+    function addToTodoList(label) {
+      const todo = {
+          label: label,
+          longStr: new Array(10000).join(label)
+        }
+      todolist.children.push(todo); 
+
       const el = document.getElementById("todoList")
-      el.innerHTML = "" // clear all todo
-      arr.forEach((elem, i) => {
-        const li = document.createElement("li")
-        li.className = "todoElem" + i
-        const delBtn = document.createElement("button")
-        delBtn.innerHTML = "delete"
-        delBtn.addEventListener("click", () => {
-          arr.splice(i, 1)
-          displayTodoList()
-        })
-        li.innerHTML = elem
-        li.appendChild(delBtn)
-        el.appendChild(li)
+      const li = document.createElement("li")
+      li.className = "todoElem0"
+      const delBtn = document.createElement("button")
+      delBtn.innerHTML = "delete"
+      delBtn.addEventListener("click", () => {
+        el.removeChild(li)
       })
+      li.innerHTML = label
+      li.appendChild(delBtn)
+      el.appendChild(li)
     }
   </script>
   <body>
     <h1>TODO</h1>
-    <form id="todoForm" onsubmit="arr.push(todoLabel.value); displayTodoList(); return false;" >
+    <form id="todoForm" onsubmit="addToTodoList(todoLabel.value); return false;" >
       <input id="todoFormLabel" type="text" name="todoLabel">
       <input id="todoFormButton" type="submit" value="追加"/>
     </form>
