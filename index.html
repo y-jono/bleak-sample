@@ -2,15 +2,19 @@
   <script>
     const todolist = {
       name: 'List1',
-      children: []
+      children: [],
+      creareChild: function (label) {
+        const todo = {
+            label: label,
+            longStr: new Array(10000).join(label)
+          }
+        this.children.push(todo)
+        return todo
+      }
     }
 
-    function addToTodoList(label) {
-      const todo = {
-          label: label,
-          longStr: new Array(10000).join(label)
-        }
-      todolist.children.push(todo); 
+    function appendTodoElem(label) {
+      const todo = todolist.creareChild(label)
 
       const el = document.getElementById("todoList")
       const li = document.createElement("li")
@@ -19,15 +23,16 @@
       delBtn.innerHTML = "delete"
       delBtn.addEventListener("click", () => {
         el.removeChild(li)
+        todo = null
       })
-      li.innerHTML = label
+      li.innerHTML = todo.label
       li.appendChild(delBtn)
       el.appendChild(li)
     }
   </script>
   <body>
     <h1>TODO</h1>
-    <form id="todoForm" onsubmit="addToTodoList(todoLabel.value); return false;" >
+    <form id="todoForm" onsubmit="appendTodoElem(todoLabel.value); return false;" >
       <input id="todoFormLabel" type="text" name="todoLabel">
       <input id="todoFormButton" type="submit" value="追加"/>
     </form>
